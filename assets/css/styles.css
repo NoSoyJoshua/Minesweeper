@@ -1,0 +1,259 @@
+/*===== GOOGLE FONTS =====*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/* CSS Variables */
+:root {
+    --header-height: 3rem;
+    --font-semi: 600;    
+}
+
+/* Images */
+:root {
+    --mode-img: "../images/moon.png";
+}
+
+/* Colors */
+:root {
+    --first-color: #EDE6DB;
+    --second-color: #1A3C40; 
+    --third-color: #1D5C63;
+    --fourth-color: #417D7A;
+    --play-color: #08A045;
+    --resign-color: #F95738;
+    --disabled-color: #847979;
+    --mine-color: #ED254E;
+    --flag-color: #FE9000;
+    --bg-color: #EDE6DB
+}
+
+/* Fonts and typography */
+:root {
+    --body-font: "Poppins", sans-serif;
+    --big-font-size: 2rem;
+    --h2-font-size: 1.25rem;
+    --normal-font-size: 0.938rem;
+}
+@media screen and (min-width: 768px) {
+    :root {
+        --big-font-size: 3.5rem;
+        --h2-font-size: 2rem;
+        --normal-font-size: 1rem;
+    }
+}
+
+/* Board size */
+:root {
+    --board-size-x: 8;
+    --board-size-y: 10;
+    --number-mines: 10;
+}
+
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex-basis: 1;
+    font-family: var(--body-font);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    align-items: center;
+    background-color: var(--second-color);
+    display: flex;
+    height: max(10vh, var(--header-height));
+    justify-content: space-between;
+    width: 100vw;
+    font-size: clamp(0.5rem, var(--normal-font-size), 1.5rem);
+}
+
+.logo {
+    width: clamp(3.5rem, 4%, 5rem);
+    margin-left: 1rem;
+}
+
+.dark-logo {
+    border-radius: 12px;
+    background-color: var(--first-color);
+}
+
+ul {
+    align-items: center;
+    display: flex;
+    gap:0.5rem;
+    list-style-type: none;
+    padding: 0;
+}
+
+.nav-list-element {
+    border-radius: 12px;
+    color: var(--second-color);
+    display: inline-block;
+    font-weight: var(--font-semi);    
+    padding: 1rem 0;
+}
+
+.nav-list-element:hover {
+    background-color: var(--third-color);
+    color: var(--first-color);
+}
+
+.nav-list-difficulty-element {
+    background-color: var(--first-color);
+}
+
+.mines-left {
+    border-radius: 12px;
+    color: var(--second-color);
+    display: inline-block;
+    font-weight: var(--font-semi);    
+    padding: 1rem 0;
+    background-color: var(--first-color);
+}
+
+.time {
+    border-radius: 12px;
+    color: var(--second-color);
+    display: inline-block;
+    font-weight: var(--font-semi);    
+    padding: 1rem 0;
+    background-color: var(--first-color);
+    color: var(--second-color);
+    text-align: center;
+}
+
+
+.toolbar-option {
+    min-width: 10vw;
+    text-align: center;
+    padding-left: 1vw;
+    padding-right: 1vw;
+}
+
+.win {
+    background-color: var(--play-color);
+}
+
+.lose {
+    background-color: var(--mine-color);
+}
+
+main {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: min(90vh, 100vh - var(--header-height));
+    justify-content: center;
+    position: relative;    
+    width: 100%;
+}
+
+.grid {
+    display: inline-grid;
+    padding: 10px;
+    grid-template-columns: repeat(var(--board-size-y), min( 95vh / var(--board-size-y), 95vw / var(--board-size-x)));
+    grid-template-rows: repeat(var(--board-size-x), min( 95vh / var(--board-size-y), 95vw / var(--board-size-x)));
+    gap: 4px;
+}
+
+.grid-start {
+    background: url("../images/mine.png") var(--bg-color);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 10%;
+    border-radius: 100px;
+    border: 1rem solid var(--second-color);
+    padding: 0;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    width: 90vw;
+}
+
+.grid-start:hover {
+    background-color: var(--mine-color);
+    transition: all 0.15s ease-in-out;
+}
+
+.grid > * {
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border: 2px solid black;
+    user-select: none;
+}
+
+.grid > *:hover {
+    opacity: 0.75;
+    transition: all 0.15s ease-in-out;
+}
+
+.grid > [data-status="hidden"] {
+    background-color: var(--third-color);
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+}
+
+.grid > [data-status="mine"] {
+    background: url("../images/mine.png") var(--mine-color);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 75%;
+    transition: background-color 0.15s ease-in-out;
+}
+
+.grid > [data-status="number"] {
+    background-color: var(--play-color);
+    transition: all 0.15s ease-in-out;
+}
+
+.grid > [data-status="marked"] {
+    background: url("../images/red-flag.png") var(--flag-color);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 75%;
+    transition: background-color 0.15s ease-in-out;
+}
+
+#mode {
+    aspect-ratio: 1;
+    min-width: 1rem;
+    height: 3.5rem;
+    margin-right: 1rem;
+    border-radius: 50%;
+}
+
+.lightmode {
+    background: url("../images/moon.png") transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 75%;
+}
+
+.darkmode {
+    background: url("../images/sun.png") transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 75%;
+}
+
+@media screen and (max-width: 1040px) {
+    .grid {
+        display: inline-grid;
+        padding: 10px;
+        grid-template-columns: repeat(var(--board-size-y), min( 70vh / var(--board-size-y), 80vw / var(--board-size-x)));
+        grid-template-rows: repeat(var(--board-size-x), min( 70vh / var(--board-size-y), 80vw / var(--board-size-x)));
+        gap: 4px;
+    }
+}
