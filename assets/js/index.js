@@ -75,6 +75,7 @@ function resetTimer() {
     stopTimer();
     seconds = 0;
     timeElement.innerText = "00:00:00";
+    timeElementMobile.innerText = "00:00:00";
 }
 
 // Display/UI
