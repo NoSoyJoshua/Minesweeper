@@ -15,11 +15,14 @@ navbarButton.addEventListener("click", () => {
 
 // Darkmode Button
 const darkmodeButton = document.querySelector('.lightmode');
+const logo = document.querySelector(".logo");
 
 let mode = 0;
 
+// #66D7D1
+
 const varModes = ["--first-color", "--second-color", "--third-color", "--fourth-color", "--bg-color"]
-const modes = [["#EDE6DB", "#1A3C40", "#1D5C63", "#417D7A", "#EDE6DB"], ["#3F3351", "#864879", "#E9A6A6", "#1F1D36", "#1F1D36"]]
+const modes = [["#EDE6DB", "#1A3C40", "#1D5C63", "#417D7A", "#EDE6DB"], ["#3F3351", "#74B3CE", "#E9A6A6", "#1F1D36", "#1F1D36"]]
 
 darkmodeButton.addEventListener("click", () => {
     mode = (mode + 1) % 2;
@@ -30,11 +33,14 @@ darkmodeButton.addEventListener("click", () => {
     for (let i = 0; i < varModes.length; i++) {
         document.documentElement.style.setProperty(varModes[i], modes[mode][i]);
     }
+
+    logo.classList.toggle("darken-logo");
 })
 
 
 // Chronometer
 const timeElement = document.querySelector(".time");
+const timeElementMobile = document.querySelector(".time-mobile")
 
 let seconds = 0;
 let interval;
@@ -52,6 +58,7 @@ function timer() {
     if (hours > 99) hours = "99";
 
     timeElement.innerText =  `${hours}:${mins}:${secs}`;
+    timeElementMobile.innerText =  `${hours}:${mins}:${secs}`;
 }
 
 function startTimer() {
@@ -112,12 +119,17 @@ for (let i = 0; i < difficultySizes.length; i++) {
         messageText.innerHTML = "Minas: <span class='number-of-mines-left'></span>";
         messageText.classList.remove("win", "lose");
 
+        const messageTextMobile = document.querySelector(".mines-left-mobile");        
+        messageTextMobile.innerHTML = "Minas: <span class='number-of-mines-left-mobile'></span>";
+        messageTextMobile.classList.remove("info-mobile-element-win", "info-mobile-element-lose");
+
         let board = createBoard(boardX, boardY, numberOfMines);
         
         const boardElement = document.querySelector(".grid");
         boardElement.classList.remove("grid-start");
 
         const minesLeftCount = document.querySelector(".number-of-mines-left");
+        const minesLeftCountMobile = document.querySelector(".number-of-mines-left-mobile");
         
         while (boardElement.firstChild) {
             boardElement.removeChild(boardElement.lastChild);
@@ -139,7 +151,7 @@ for (let i = 0; i < difficultySizes.length; i++) {
                     if (firstMove && (tile.mine || (tile.value !== "0" && tile.value !== 0))) {
                         boardChanged = true;
                         board = createBoard(boardX, boardY, numberOfMines);
-                        setUpBoard(tile, boardElement, board, boardX, boardY, numberOfMines, firstMove, messageText, minesLeftCount);
+                        setUpBoard(tile, boardElement, board, boardX, boardY, numberOfMines, firstMove, messageText, minesLeftCount, messageTextMobile, minesLeftCountMobile);
                     }
                     firstMove = false;
                     startTimer();
@@ -148,7 +160,7 @@ for (let i = 0; i < difficultySizes.length; i++) {
                         return
                     }
                     revealTile(board, tile);
-                    checkGameEnd(board, boardElement, messageText);
+                    checkGameEnd(board, boardElement, messageText, messageTextMobile);
                 })
                 tile.element.addEventListener("contextmenu", function(e) {
                     if (boardChanged) {
@@ -157,23 +169,25 @@ for (let i = 0; i < difficultySizes.length; i++) {
 
                     e.preventDefault();
                     markTile(tile, parseInt(minesLeftCount.textContent));
-                    listMinesLeft(board, minesLeftCount, numberOfMines);
+                    listMinesLeft(board, minesLeftCount, minesLeftCountMobile, numberOfMines);
                 })
             })
         })
         minesLeftCount.textContent = numberOfMines;
+        minesLeftCountMobile.textContent = numberOfMines;
     })
 }
 
-function listMinesLeft(board, minesLeftCount, numberOfMines) {
+function listMinesLeft(board, minesLeftCount, minesLeftCountMobile, numberOfMines) {
     const markedTilesCount = board.reduce((count, row) => {
         return count + row.filter(tile => tile.status === TILE_STATUSES.MARKED).length;
     }, 0)
 
     minesLeftCount.textContent = numberOfMines - markedTilesCount
+    minesLeftCountMobile.textContent = numberOfMines - markedTilesCount
 }
 
-function checkGameEnd(board, boardElement, messageText) {
+function checkGameEnd(board, boardElement, messageText, messageTextMobile) {
     const win = checkWin(board);
     const lose = checkLose(board);
 
@@ -184,11 +198,15 @@ function checkGameEnd(board, boardElement, messageText) {
 
     if (win) {
         messageText.classList.add("win")
+        messageTextMobile.classList.add("info-mobile-element-win")
         messageText.textContent = "Ganaste";
+        messageTextMobile.textContent = "Ganaste";
     }
     if (lose) {
         messageText.classList.add("lose")
+        messageTextMobile.classList.add("info-mobile-element-lose")
         messageText.textContent = "Perdiste";
+        messageTextMobile.textContent = "Perdiste";
         board.forEach(row => {
             row.forEach(tile => {
                 if (tile.status === TILE_STATUSES.MARKED) tile.status = TILE_STATUSES.HIDDEN;
@@ -219,7 +237,7 @@ function showAllSquares (board) {
     })
 }
 
-function setUpBoard(t, boardElement, board, boardX, boardY, numberOfMines, firstMove, messageText, minesLeftCount) {
+function setUpBoard(t, boardElement, board, boardX, boardY, numberOfMines, firstMove, messageText, minesLeftCount, messageTextMobile, minesLeftCountMobile) {
     while (boardElement.firstChild) {
         boardElement.removeChild(boardElement.lastChild);
     }
@@ -240,7 +258,7 @@ function setUpBoard(t, boardElement, board, boardX, boardY, numberOfMines, first
                 if (firstMove && (tile.mine || (tile.value !== "0" && tile.value !== 0))) {
                     boardChanged = true;
                     board = createBoard(boardX, boardY, numberOfMines);                    
-                    setUpBoard(tile, boardElement, board, boardX, boardY, numberOfMines, firstMove, messageText, minesLeftCount)
+                    setUpBoard(tile, boardElement, board, boardX, boardY, numberOfMines, firstMove, messageText, minesLeftCount, messageTextMobile, minesLeftCountMobile)
                 }
                 firstMove = false;
                 
@@ -248,7 +266,7 @@ function setUpBoard(t, boardElement, board, boardX, boardY, numberOfMines, first
                     return
                 }
                 revealTile(board, tile);
-                checkGameEnd(board, boardElement, messageText);
+                checkGameEnd(board, boardElement, messageText, messageTextMobile);
             })
             board[t.x][t.y].element.click();
             tile.element.addEventListener("contextmenu", function(e) {
@@ -258,7 +276,7 @@ function setUpBoard(t, boardElement, board, boardX, boardY, numberOfMines, first
 
                 e.preventDefault();
                 markTile(tile, parseInt(minesLeftCount.textContent));
-                listMinesLeft(board, minesLeftCount, numberOfMines);
+                listMinesLeft(board, minesLeftCount, minesLeftCountMobile, numberOfMines);
             })
         })
     })

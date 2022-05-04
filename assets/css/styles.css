@@ -84,6 +84,12 @@ nav {
     margin-left: 1rem;
 }
 
+.darken-logo {
+    padding: 5px;
+    background-color: var(--first-color);
+    border-radius: 20px;
+}
+
 ul {
     align-items: center;
     display: flex;
@@ -153,6 +159,10 @@ main {
     justify-content: center;
     position: relative;    
     width: 100%;
+}
+
+.info-mobile-element {
+    display: none;
 }
 
 .grid {
@@ -313,14 +323,19 @@ main {
         padding: 1rem 0;
     }
     
-    .mines-left {  
+    .nav-list-data {
+        display: none;
+    }
+
+    /* .mines-left {  
         padding: 1rem 0;
-        
+        display: none;        
     }
     
     .time {
         padding: 1rem 0;
-    }
+        display: none;        
+    } */
 
     .toolbar-option {
         width: 100%;
@@ -347,7 +362,41 @@ main {
     }
     
     main {
+        /* align-items: center;
+        display: flex;
+        flex-direction: column; */
         height: 100vh;
+    }
+
+    .info-mobile-list {
+        /* align-items: center;
+        display: flex;
+        flex-direction: row; */
+        justify-content: center;
+        flex-direction: row;
+        gap: 0.5rem;
+        height: 5rem;
+        width: 20rem;
+        margin-bottom: 1rem;
+        color: var(--first-color);
+    }
+
+    .info-mobile-element {
+        align-items: center;
+        display: flex;
+        height: 4rem;
+        justify-content: center;
+        background-color: var(--second-color);
+        width: 10rem;
+        border-radius: 15px;
+    }
+
+    .info-mobile-element-win {
+        background-color: var(--play-color);
+    }
+    
+    .info-mobile-element-lose {
+        background-color: var(--mine-color);
     }
     
     .grid {
