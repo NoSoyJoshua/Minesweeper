@@ -54,6 +54,7 @@
 }
 
 body {
+    align-items: center;
     background-color: var(--bg-color);
     display: flex;
     flex-direction: column;
@@ -159,6 +160,10 @@ main {
     justify-content: center;
     position: relative;    
     width: 100%;
+}
+
+.info-mobile {
+    display: none;
 }
 
 .info-mobile-element {
@@ -357,6 +362,10 @@ main {
         flex-direction: column;
         justify-content: center;
         height: 100vh;
+    }
+
+    .info-mobile {
+        display: block;
     }
 
     .info-mobile-list {
