@@ -38,7 +38,7 @@ darkmodeButton.addEventListener("click", () => {
 window.addEventListener('load', function(){
     var lastScrollLeft = 0;
     window.addEventListener("scroll", function(){
-       var st = window.pageXOffset || document.documentElement.Element.scrollLeft; 
+       var st = window.pageXOffset || document.body.scrollLeft; 
        if (st > lastScrollLeft){
             mode = (mode + 1) % 2;
 
