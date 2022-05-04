@@ -327,16 +327,6 @@ main {
         display: none;
     }
 
-    /* .mines-left {  
-        padding: 1rem 0;
-        display: none;        
-    }
-    
-    .time {
-        padding: 1rem 0;
-        display: none;        
-    } */
-
     .toolbar-option {
         width: 100%;
         text-align: center;
@@ -371,13 +361,11 @@ main {
 
     .info-mobile-list {
         align-items: center;
-        flex-direction: row;
         justify-content: center;
         flex-direction: row;
         gap: 0.5rem;
         height: 5rem;
         width: 20rem;
-        /* margin-bottom: 1rem; */
         color: var(--first-color);
     }
 
