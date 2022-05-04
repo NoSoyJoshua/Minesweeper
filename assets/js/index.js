@@ -35,38 +35,6 @@ darkmodeButton.addEventListener("click", () => {
     logo.classList.toggle("darken-logo");
 })
 
-window.addEventListener('load', function(){
-    var lastScrollLeft = 0;
-    window.addEventListener("scroll", function(){
-       var st = window.pageXOffset || document.body.scrollLeft; 
-       if (st > lastScrollLeft){
-            mode = (mode + 1) % 2;
-
-            darkmodeButton.classList.toggle("darkmode");
-            darkmodeButton.classList.toggle("lightmode");
-        
-            for (let i = 0; i < varModes.length; i++) {
-                document.documentElement.style.setProperty(varModes[i], modes[mode][i]);
-            }
-        
-            logo.classList.toggle("darken-logo");
-       } else {
-            mode = (mode + 1) % 2;
-
-            darkmodeButton.classList.toggle("darkmode");
-            darkmodeButton.classList.toggle("lightmode");
-        
-            for (let i = 0; i < varModes.length; i++) {
-                document.documentElement.style.setProperty(varModes[i], modes[mode][i]);
-            }
-        
-            logo.classList.toggle("darken-logo");
-       }
-       lastScrollLeft = st <= 0 ? 0 : st; 
-    }, false);
-  }); 
-
-
 // Chronometer
 const timeElement = document.querySelector(".time");
 const timeElementMobile = document.querySelector(".time-mobile")
