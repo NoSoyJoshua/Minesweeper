@@ -256,19 +256,23 @@ main {
     }
 
     .show-navbar {
+        background: url("../images/mine.png") transparent;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 75%;
         display: inline-block;
         position: absolute;
         top: 10px;
         left: 10px;
-        background-color: red;
+        background-color: var(--mine-color);
         color: inherit;
         border: none;
         padding: 0;
         font: inherit;
         cursor: pointer;
         outline: inherit;
-        width: 20px;
-        height: 20px;
+        width: 30px;
+        height: 30px;
         border-radius: 50%;
         z-index: 10;
         transition: all 0.1s ease-in-out;
