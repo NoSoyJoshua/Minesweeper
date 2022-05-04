@@ -343,15 +343,16 @@ main {
     }
     
     .grid {
-        grid-template-columns: repeat(var(--board-size-y), min( 75vh / var(--board-size-x), 75vw / var(--board-size-y)));
-        grid-template-rows: repeat(var(--board-size-x), min( 75vh / var(--board-size-x), 75vw / var(--board-size-y)));
+        grid-template-columns: repeat(var(--board-size-y), min( 90vh / var(--board-size-x), 90vw / var(--board-size-y)));
+        grid-template-rows: repeat(var(--board-size-x), min( 90vh / var(--board-size-x), 90vw / var(--board-size-y)));
         gap: 0;
         left: auto;
         right: auto;
     }
 
     .grid > * {
-        border-radius: 0;
+        border-radius: 5px;
+        border-color: var(--first-color);
     }
 
     #mode {
