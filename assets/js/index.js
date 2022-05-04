@@ -184,11 +184,11 @@ function checkGameEnd(board, boardElement, messageText) {
 
     if (win) {
         messageText.classList.add("win")
-        messageText.textContent = "You win";
+        messageText.textContent = "Ganaste";
     }
     if (lose) {
         messageText.classList.add("lose")
-        messageText.textContent = "You lose";
+        messageText.textContent = "Perdiste";
         board.forEach(row => {
             row.forEach(tile => {
                 if (tile.status === TILE_STATUSES.MARKED) tile.status = TILE_STATUSES.HIDDEN;
