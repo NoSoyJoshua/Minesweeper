@@ -1,5 +1,3 @@
-// TODO 1. Agregar emoción cuando se gana o se pierde
-
 // Phone navbar button
 const navbarButton = document.querySelector(".show-navbar");
 const navbar = document.querySelector("nav");
@@ -90,11 +88,11 @@ function phoneDifficulty(x) {
     } else {
         difficultySizes = [["8", "10", "10"], ["14", "18", "40"], ["20", "30", "99"]];
     }
-  }
-  
-  var x = window.matchMedia("(max-width: 1040px)")
-  phoneDifficulty(x) // Call listener function at run time
-  x.addListener(phoneDifficulty) // Attach listener function on state changes
+}
+
+var x = window.matchMedia("(max-width: 1040px)")
+phoneDifficulty(x) // Call listener function at run time
+x.addListener(phoneDifficulty) // Attach listener function on state changes
 
 // * Manejo de los niveles de dificultad.
 for (let i = 0; i < difficultySizes.length; i++) {
@@ -111,7 +109,7 @@ for (let i = 0; i < difficultySizes.length; i++) {
         const numberOfMines = difficultySizes[i][2];
 
         const messageText = document.querySelector(".mines-left");
-        messageText.innerHTML = "Mines left: <span class='number-of-mines-left'></span>";
+        messageText.innerHTML = "Minas: <span class='number-of-mines-left'></span>";
         messageText.classList.remove("win", "lose");
 
         let board = createBoard(boardX, boardY, numberOfMines);
