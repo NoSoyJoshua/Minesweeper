@@ -256,11 +256,9 @@ main {
     }
 
     .show-navbar {
-        background: url("../images/mine.png") transparent;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 75%;
-        display: inline-block;
+        align-items: center;
+        display: flex;
+        gap: 1rem;
         position: absolute;
         top: 10px;
         left: 10px;
@@ -271,13 +269,18 @@ main {
         font: inherit;
         cursor: pointer;
         outline: inherit;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
         z-index: 10;
         transition: all 0.1s ease-in-out;
+        padding: 10px;
+        border-radius: 15px;
+        height: 40px;
     }
 
+    .navbar-img {
+        display: inline;
+        height: 30px;
+    }
+    
     .show-navbar-open {
         left: calc(10px + 40vw);
         transition: all 0.1s ease-in-out;
@@ -347,8 +350,8 @@ main {
     }
     
     .grid {
-        grid-template-columns: repeat(var(--board-size-y), min( 90vh / var(--board-size-x), 90vw / var(--board-size-y)));
-        grid-template-rows: repeat(var(--board-size-x), min( 90vh / var(--board-size-x), 90vw / var(--board-size-y)));
+        grid-template-columns: repeat(var(--board-size-y), min( 85vh / var(--board-size-x), 90vw / var(--board-size-y)));
+        grid-template-rows: repeat(var(--board-size-x), min( 85vh / var(--board-size-x), 90vw / var(--board-size-y)));
         gap: 0;
         left: auto;
         right: auto;
