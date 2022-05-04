@@ -1,9 +1,22 @@
-// TODO 1. Hacerlo responsive
-// TODO 2. Agregar emoción cuando se gana o se pierde
+// TODO 1. Agregar emoción cuando se gana o se pierde
+
+// Phone navbar button
+const navbarButton = document.querySelector(".show-navbar");
+const navbar = document.querySelector("nav");
+const navbarChildren = document.querySelectorAll("navbar-child");
+
+navbarButton.addEventListener("click", () => {
+    navbarButton.classList.toggle("show-navbar-open");
+    navbar.classList.toggle("navbar-open");
+
+    for (let i = 0; i < navbarChildren.length; i++) {
+        navbarChildren[i].classList.toggle("navbar-child-open")
+    }
+})
+
 
 // Darkmode Button
 const darkmodeButton = document.querySelector('.lightmode');
-const logo = document.querySelector(".logo");
 
 let mode = 0;
 
@@ -19,8 +32,6 @@ darkmodeButton.addEventListener("click", () => {
     for (let i = 0; i < varModes.length; i++) {
         document.documentElement.style.setProperty(varModes[i], modes[mode][i]);
     }
-
-    logo.classList.toggle(".dark-logo");
 })
 
 
@@ -255,5 +266,3 @@ function setUpBoard(t, boardElement, board, boardX, boardY, numberOfMines, first
     })
     minesLeftCount.textContent = numberOfMines;
 }
-
-

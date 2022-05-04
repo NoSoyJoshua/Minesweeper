@@ -33,7 +33,7 @@
     --h2-font-size: 1.25rem;
     --normal-font-size: 0.938rem;
 }
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 1040px) {
     :root {
         --big-font-size: 3.5rem;
         --h2-font-size: 2rem;
@@ -65,6 +65,10 @@ body {
     padding: 0;
 }
 
+.show-navbar {
+    display: none;
+}
+
 nav {
     align-items: center;
     background-color: var(--second-color);
@@ -78,11 +82,6 @@ nav {
 .logo {
     width: clamp(3.5rem, 4%, 5rem);
     margin-left: 1rem;
-}
-
-.dark-logo {
-    border-radius: 12px;
-    background-color: var(--first-color);
 }
 
 ul {
@@ -159,8 +158,8 @@ main {
 .grid {
     display: inline-grid;
     padding: 10px;
-    grid-template-columns: repeat(var(--board-size-y), min( 95vh / var(--board-size-y), 95vw / var(--board-size-x)));
-    grid-template-rows: repeat(var(--board-size-x), min( 95vh / var(--board-size-y), 95vw / var(--board-size-x)));
+    grid-template-columns: repeat(var(--board-size-y), min( 75vh / var(--board-size-x), 85vw / var(--board-size-y)));
+    grid-template-rows: repeat(var(--board-size-x), min( 75vh / var(--board-size-x), 85vw / var(--board-size-y)));
     gap: 4px;
 }
 
@@ -249,11 +248,145 @@ main {
 }
 
 @media screen and (max-width: 1040px) {
+    body {
+        display: inline-block;
+        flex-direction: row;
+        margin: 0;
+        padding: 0;
+        position: relative;
+        width: 100%;
+    }
+
+    .show-navbar {
+        display: inline-block;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background-color: red;
+        color: inherit;
+        border: none;
+        padding: 0;
+        font: inherit;
+        cursor: pointer;
+        outline: inherit;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        z-index: 10;
+        transition: all 0.1s ease-in-out;
+    }
+
+    .show-navbar-open {
+        left: calc(10px + 40vw);
+        transition: all 0.1s ease-in-out;
+    }
+
+    .logo {
+        margin-top: 10px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #mode {
+        aspect-ratio: 1;
+        min-width: 1rem;
+        height: 5rem;
+        margin-right: 1rem;
+        border-radius: 50%;
+        margin-bottom: 10px;
+        background-size: 25%;
+    }
+ 
+    nav {
+        align-items: stretch;
+        background-color: var(--second-color);
+        height: max(10vh, var(--header-height));
+        flex-direction: column;
+        flex-grow: 1;
+        justify-content: space-between;
+        width: 40vw;
+        font-size: clamp(0.5rem, var(--normal-font-size), 1.5rem);
+        height: 100vh;
+        position: absolute;
+        z-index: 10;
+        transition: all 0.1s ease-in-out;
+    }
+    
+    nav, nav > * {
+        left: -40vw;
+        transition: all 0.1s ease-in-out;
+    }
+
+    .navbar-open {
+        left: 0;
+        display: flex;
+        border-right: 3px solid var(--first-color);
+        transition: all 0.1s ease-in-out;
+    }
+
+    /* .logo-open {
+        left: 0;
+    }
+
+    .ul-open {
+        left: 0;
+    }
+
+    .mode-open {
+    }*/
+
+    navbar-child-open {
+        left: 0;
+    }
+
+    ul {
+        flex-direction: column;
+        margin: 0 1rem;
+    }
+
+    main {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        height: min(90vh, 100vh - var(--header-height));
+        justify-content: center;
+        position: relative;    
+        width: 100%;
+        height: 100vh;
+    }
+
+    main-hidden {
+        opacity: 0.5;
+    }
+
+    .toolbar-option {
+        width: 100%;
+        text-align: center;
+        padding-left: 10%;
+        padding-right: 10%;
+        font-size: 0.75rem; 
+    }
+
     .grid {
         display: inline-grid;
         padding: 10px;
-        grid-template-columns: repeat(var(--board-size-y), min( 70vh / var(--board-size-y), 80vw / var(--board-size-x)));
-        grid-template-rows: repeat(var(--board-size-x), min( 70vh / var(--board-size-y), 80vw / var(--board-size-x)));
+        grid-template-columns: repeat(var(--board-size-y), min( 75vh / var(--board-size-x), 75vw / var(--board-size-y)));
+        grid-template-rows: repeat(var(--board-size-x), min( 75vh / var(--board-size-x), 75vw / var(--board-size-y)));
         gap: 4px;
+        left: auto;
+        right: auto;
+    }
+
+    .nav-list-element { 
+        padding: 1rem 0;
+    }
+    
+    .mines-left {  
+        padding: 1rem 0;
+
+    }
+    
+    .time {
+        padding: 1rem 0;
     }
 }
