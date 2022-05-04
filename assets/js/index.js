@@ -19,8 +19,6 @@ const logo = document.querySelector(".logo");
 
 let mode = 0;
 
-// #66D7D1
-
 const varModes = ["--first-color", "--second-color", "--third-color", "--fourth-color", "--bg-color"]
 const modes = [["#EDE6DB", "#1A3C40", "#1D5C63", "#417D7A", "#EDE6DB"], ["#3F3351", "#74B3CE", "#E9A6A6", "#1F1D36", "#1F1D36"]]
 
